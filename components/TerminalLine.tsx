@@ -5,10 +5,9 @@ import { TerminalLine } from "@/lib/types";
 
 interface TerminalLineProps {
   line: TerminalLine;
-  promptPath: string;
 }
 
-export default function TerminalLineComponent({ line, promptPath }: TerminalLineProps) {
+export default function TerminalLineComponent({ line }: TerminalLineProps) {
   if (line.type === "html" && line.html) {
     return (
       <div

@@ -5,6 +5,15 @@ import { marked } from "marked";
 
 export type ContentMap = Record<string, string>;
 
+// Strip raw HTML blocks from markdown output.
+// Content is authored and build-time only, but removing passthrough HTML
+// prevents accidental injection if a markdown file ever includes raw HTML tags.
+marked.use({
+  renderer: {
+    html: () => "",
+  },
+});
+
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
 /** Recursively collect all .md files under /content/ and return a map

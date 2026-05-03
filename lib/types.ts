@@ -17,6 +17,8 @@ export interface CommandContext {
   toggleCrt: () => void;
   crtEnabled: boolean;
   commandHistory: string[];
+  theme: "dark" | "light";
+  setTheme: (t: "dark" | "light") => void;
 }
 
 export type CommandResult = TerminalLine | TerminalLine[];

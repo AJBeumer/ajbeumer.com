@@ -30,10 +30,24 @@
 
 ---
 
+## Search & Utilities
+
+| Command | Description |
+|---|---|
+| `find <keyword>` | Search all content (e.g. `find cms`, `find "internal tools"`) |
+| `append <file> [file2...]` | Display multiple files combined (e.g. `append about/bio.txt skills/core-skills.txt`) |
+| `echo <text>` | Print text to the terminal |
+| `date` | Show the current date |
+| `time` | Show the current time |
+
+---
+
 ## System
 
 | Command | Description |
 |---|---|
+| `mode dark\|light` | Switch visual theme (e.g. `mode light`) |
+| `country [code]` | Language/region settings (localization WIP) |
 | `history` | Show command history |
 | `crt on\|off` | Toggle CRT scanline effect |
 | `help` | Show this screen |

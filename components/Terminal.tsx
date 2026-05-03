@@ -11,8 +11,7 @@ import BootSequence from "@/components/BootSequence";
 import TerminalLineComponent from "@/components/TerminalLine";
 import TerminalInput from "@/components/TerminalInput";
 import { TerminalLine } from "@/lib/types";
-import { parseAndExecute } from "@/lib/commandParser";
-import { lineId } from "@/lib/commandParser";
+import { parseAndExecute, lineId } from "@/lib/commands";
 
 // ────────────────────────────────────────────────────────
 // State
@@ -23,6 +22,7 @@ interface TerminalState {
   commandHistory: string[];
   historyIndex: number;
   crtEnabled: boolean;
+  theme: "dark" | "light";
 }
 
 type Action =
@@ -31,7 +31,8 @@ type Action =
   | { type: "SET_CWD"; cwd: string[] }
   | { type: "PUSH_HISTORY"; cmd: string }
   | { type: "SET_HISTORY_INDEX"; index: number }
-  | { type: "TOGGLE_CRT" };
+  | { type: "TOGGLE_CRT" }
+  | { type: "SET_THEME"; theme: "dark" | "light" };
 
 function reducer(state: TerminalState, action: Action): TerminalState {
   switch (action.type) {
@@ -51,6 +52,8 @@ function reducer(state: TerminalState, action: Action): TerminalState {
       return { ...state, historyIndex: action.index };
     case "TOGGLE_CRT":
       return { ...state, crtEnabled: !state.crtEnabled };
+    case "SET_THEME":
+      return { ...state, theme: action.theme };
     default:
       return state;
   }
@@ -86,7 +89,26 @@ export default function Terminal({ content }: TerminalProps) {
     commandHistory: [],
     historyIndex: 0,
     crtEnabled: false,
+    theme: "dark",
   });
+
+  // Restore theme from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("ajb-theme");
+    if (saved === "light" || saved === "dark") {
+      dispatch({ type: "SET_THEME", theme: saved });
+    }
+  }, []);
+
+  // Apply theme class to body + persist to localStorage
+  useEffect(() => {
+    if (state.theme === "light") {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+    localStorage.setItem("ajb-theme", state.theme);
+  }, [state.theme]);
 
   // Apply CRT class to body
   useEffect(() => {
@@ -104,10 +126,6 @@ export default function Terminal({ content }: TerminalProps) {
   }, [state.lines, matrixActive]);
 
   const currentPrompt = `C:\\AJBEUMER${state.cwd.length ? "\\" + state.cwd.join("\\") : ""}`;
-
-  const appendLines = useCallback((lines: TerminalLine[]) => {
-    dispatch({ type: "APPEND", lines });
-  }, []);
 
   const handleBootComplete = useCallback(() => {
     setBooted(true);
@@ -163,6 +181,7 @@ export default function Terminal({ content }: TerminalProps) {
 
         let newCwd = state.cwd;
         let crtEnabled = state.crtEnabled;
+        let theme = state.theme;
 
         const result = parseAndExecute(trimmed, {
           cwd: state.cwd,
@@ -176,6 +195,10 @@ export default function Terminal({ content }: TerminalProps) {
           },
           crtEnabled: state.crtEnabled,
           commandHistory: state.commandHistory,
+          theme: state.theme,
+          setTheme: (t) => {
+            theme = t;
+          },
         });
 
         // Check for special signals
@@ -200,6 +223,7 @@ export default function Terminal({ content }: TerminalProps) {
 
         if (newCwd !== state.cwd) dispatch({ type: "SET_CWD", cwd: newCwd });
         if (crtEnabled !== state.crtEnabled) dispatch({ type: "TOGGLE_CRT" });
+        if (theme !== state.theme) dispatch({ type: "SET_THEME", theme });
       }
 
       setInputValue("");
@@ -297,7 +321,6 @@ export default function Terminal({ content }: TerminalProps) {
           <TerminalLineComponent
             key={line.id}
             line={line}
-            promptPath={currentPrompt}
           />
         ))}
         {matrixActive && (

@@ -1,31 +1,32 @@
 # Tools
 
+## Languages
+- TypeScript (primary)
+- [TODO: add other languages you work with regularly]
+
+## Framework and runtime
+- Next.js (App Router)
+- Node.js
+- [TODO: add other frameworks]
+
+## Styling
+- Tailwind CSS
+- [TODO: add other UI tooling]
+
+## CMS platforms
+- [TODO: list specific CMS platforms you have worked with]
+
+## APIs and integrations
+- [TODO: list key APIs or integration patterns]
+
+## Deployment and infrastructure
+- Vercel
+- [TODO: add other cloud or hosting environments]
+
+## Testing and tooling
+- [TODO: add testing frameworks and dev tooling]
+
 ---
 
-## Day-to-day tooling
-
-**Languages:** [TODO: confirm — e.g. TypeScript, Python, JavaScript]  
-**Runtimes/frameworks:** [TODO: confirm — e.g. Node.js, Next.js, Django]  
-**Version control:** Git  
-**Infrastructure:** [TODO: confirm — e.g. AWS, GCP, Azure, Vercel, Docker]  
-**Databases:** [TODO: confirm — e.g. PostgreSQL, MongoDB, DynamoDB]  
-**CMS platforms:** [TODO: confirm — e.g. Contentful, Sanity, Drupal]  
-**CI/CD:** [TODO: confirm — e.g. GitHub Actions, GitLab CI]  
-**Editors:** [TODO: confirm — not vim, apparently]
-
----
-
-## Legacy stack fluency
-
-Starting in XML and HTML5 content production means I can read and work in formats that many engineers treat as alien territory. Structured markup, XSLT, content schemas — not intimidating.
-
----
-
-## Tools I actually use
-
-Beyond the stack: strong opinions on `git commit` messages, unreasonable attachment to good terminal setups, and a genuine belief that a well-named variable is worth thirty minutes of documentation.
-
----
-
-> `type engineering.txt` — skills overview  
-> `type cms-platforms.txt` — CMS tools specifically
+> `type engineering.txt` -- engineering skills and patterns
+> `type cms-platforms.txt` -- CMS and content platform experience

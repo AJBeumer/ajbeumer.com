@@ -13,6 +13,7 @@ export const filesystem: FSDir = {
       type: "dir",
       children: {
         "BIO.TXT": { type: "file", contentKey: "about/bio" },
+        "SUMMARY.TXT": { type: "file", contentKey: "about/summary" },
         "VALUES.TXT": { type: "file", contentKey: "about/values" },
         "NOW.TXT": { type: "file", contentKey: "about/now" },
       },
@@ -23,6 +24,8 @@ export const filesystem: FSDir = {
         "CURRENT-ROLE.TXT": { type: "file", contentKey: "work/current-role" },
         "TIMELINE.TXT": { type: "file", contentKey: "work/timeline" },
         "PREVIOUS-ROLES.TXT": { type: "file", contentKey: "work/previous-roles" },
+        "APPROACH.TXT": { type: "file", contentKey: "work/approach" },
+        "HIGHLIGHTS.TXT": { type: "file", contentKey: "work/highlights" },
       },
     },
     SKILLS: {

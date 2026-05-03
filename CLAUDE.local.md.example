@@ -1,0 +1,9 @@
+# CLAUDE.local.md.example
+
+Copy this file to `CLAUDE.local.md` for local-only preferences that should not be committed.
+
+Example local preferences:
+- prefer npm over pnpm
+- do not modify analytics
+- always run tests before finalizing
+- avoid touching deployment config unless asked

@@ -12,6 +12,21 @@
   --dos-text: #c8c8c8;
   --dos-dim: #555555;
   --dos-error: #ff4444;
+  --dos-highlight: #1a3a1a;
+  --dos-border: #1e1e1e;
+}
+
+/* Light mode — toggled via body.light-mode class */
+body.light-mode {
+  --dos-bg: #f5f5f0;
+  --dos-green: #005c1a;
+  --dos-green-dim: #004012;
+  --dos-amber: #7a5c00;
+  --dos-text: #1a1a1a;
+  --dos-dim: #888888;
+  --dos-error: #cc0000;
+  --dos-highlight: #d6f0d6;
+  --dos-border: #cccccc;
 }
 
 * {
